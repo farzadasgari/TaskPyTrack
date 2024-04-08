@@ -1,0 +1,52 @@
+/* Sidebar */
+.sidebar {
+    width: 70px;
+    position: fixed;
+    height: 100%;
+    background-color: #6895D2;
+    color: #fff;
+    padding-top: 20px;
+}
+
+/* Sidebar links */
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.sidebar ul li:hover {
+    background-color: #6895D2; /* Darker blue color */
+}
+
+/*Sidebar Logo*/
+.sidebar #logo {
+    width: 50px;
+    height: 50px;
+    justify-self: center;
+}
+
+.sidebar-logo {
+    text-align: center;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #FDE767;
+    color: #fff;
+    border-radius: 0;
+    border: none;
+}
+
+.navbar-brand {
+    color: #6895D2 !important;
+    font-weight: bold;
+}
+
+.content {
+    margin-left: 70px; /* Adjusted to make space for sidebar */
+}

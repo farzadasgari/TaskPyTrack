@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskPyTrack | Track Tasks With Python</title>
+  <link href="{% static 'Styles/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'Styles/TPT.css' %}" rel="stylesheet">
+</head>
+
+<body>
+<!-- Sidebar -->
+<div class="sidebar">
+  <div class="sidebar-logo">
+    <img src="https://github.com/farzadasgari/PDFPyMerger/blob/main/Icons/Logo.png?raw=true" alt="TaskPyTrack"
+         id="logo">
+  </div>
+</div>
+
+<!-- Page content -->
+<div class="content">
+  <!-- Navbar -->
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{% url 'index' %}">TaskPyTrack</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <div class="container-fluid">
+    <h1>Welcome to the TaskPyTrack</h1>
+    <p>Track Your Task With Python.</p>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="{% static 'Scripts/jquery.js' %}"></script>
+<script src="{% static 'Scripts/bootstrap.min.js' %}"></script>
+</body>
+
+</html>
