@@ -2,15 +2,17 @@ import os
 from pathlib import Path
 from random import choice
 from string import ascii_lowercase
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = ''.join(choice(ascii_lowercase) for i in range( 32 ))
+SECRET_KEY = ''.join(choice(ascii_lowercase) for i in range(32))
 
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 INSTALLED_APPS = [
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
