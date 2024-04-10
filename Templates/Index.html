@@ -9,8 +9,14 @@
   <meta name="description" content="Free Open Source Task Tracker using Python">
   <meta name="author" content="Farzad Asgari - https://github.com/farzadasgari - https://farzadasgari.ir">
   <title>TaskPyTrack | Track Tasks With Python</title>
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
   <!-- Font Awesome CSS -->
   <link href="{% static 'Plugins/fontawesome/css/all.css' %}" rel="stylesheet">
+  <!-- Material CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.4.95/css/materialdesignicons.min.css" rel="stylesheet">
   <!-- Custom CSS -->
   <link href="{% static 'Styles/TPT.css' %}" rel="stylesheet">
 </head>
@@ -40,7 +46,16 @@
       <!-- Topbar -->
       <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-        <!-- Github -->
+        <div class="d-sm-flex align-items-center justify-content-between">
+          <h2 class="h4 mb-0 text-gray-800">TaskPyTrack
+            <small>
+              <h6 class="h6 mb-0 text-gray-800">Track Tasks With Python</h6>
+            </small>
+          </h2>
+        </div>
+
+
+        <!-- GitHub -->
         <a href="https://github.com/farzadasgari/TaskPyTrack" target="_blank" class="github-link">
           <svg width="70" height="70" viewBox="0 0 250 250" aria-hidden="true">
             <defs>
@@ -51,8 +66,9 @@
             </defs>
             <path d="M 0,0 L115,115 L115,115 L142,142 L250,250 L250,0 Z" fill="url(#grad1)"></path>
           </svg>
+          <i class="mdi mdi-github-circle"></i>
         </a>
-        <!-- Github -->
+        <!-- End of GitHub -->
 
       </nav>
       <!-- End of Topbar -->
