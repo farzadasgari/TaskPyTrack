@@ -19,6 +19,15 @@
   <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.4.95/css/materialdesignicons.min.css" rel="stylesheet">
   <!-- Custom CSS -->
   <link href="{% static 'Styles/TPT.css' %}" rel="stylesheet">
+  <style>
+      .accordion-button::after {
+          background-image: initial;
+      }
+
+      .accordion-button:not(.collapsed)::after {
+          background-image: initial;
+      }
+  </style>
 </head>
 
 <body id="page-top">
@@ -35,12 +44,14 @@
       </div>
     </a>
 
+    <!-- Nav Item -->
     <li class="nav-item">
       <a class="nav-link" href="#add-task" data-target="#add-task" data-toggle="modal">
         <i class="fas fa-fw fa-plus-circle" style="font-size: 30px"></i>
       </a>
     </li>
 
+    <!-- Add Task Modal -->
     <div class="modal fade" id="add-task" tabindex="-1" role="dialog" aria-labelledby="add-task"
          aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
@@ -138,12 +149,28 @@
           <div class="col-xl-12 col-md-12">
             <div class="card shadow mb-1">
               <!-- Card Header - Accordion -->
-              <a href="#task-title1" class="d-block card-header py-3" data-toggle="collapse"
-                 role="button" aria-expanded="false" aria-controls="collapseCardExample">
-                <h6 class="m-0 font-weight-bold text-primary">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                </h6>
-              </a>
+              <div class="row mr-1 ml-1" style="background-color:#f8f9fc">
+                <a href="#task-title1" class="d-block card-header py-3 w-75" data-toggle="collapse"
+                   role="button" aria-expanded="false" aria-controls="task-title">
+                  <h6 class="m-0 font-weight-bold text-primary">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                  </h6>
+                </a>
+                <div class="text-right w-25 pr-4 pt-2">
+                  <a href="#" class="btn btn-outline-primary">
+                    <i class="fa fa-eye"></i>
+                  </a>
+                  <a href="#" class="btn btn-outline-success">
+                    <i class="fa fa-check"></i>
+                  </a>
+                  <a href="#" class="btn btn-outline-warning">
+                    <i class="fa fa-pen"></i>
+                  </a>
+                  <a href="#" class="btn btn-outline-danger">
+                    <i class="fa fa-trash"></i>
+                  </a>
+                </div>
+              </div>
               <!-- Card Content - Collapse -->
               <div class="collapse" id="task-title1">
                 <div class="card-body">
@@ -161,7 +188,7 @@
             <div class="card shadow mb-1">
               <!-- Card Header - Accordion -->
               <a href="#task-title2" class="d-block card-header py-3" data-toggle="collapse"
-                 role="button" aria-expanded="false" aria-controls="collapseCardExample">
+                 role="button" aria-expanded="false" aria-controls="task-title">
                 <h6 class="m-0 font-weight-bold text-primary">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit
                 </h6>
@@ -183,7 +210,7 @@
             <div class="card shadow mb-1">
               <!-- Card Header - Accordion -->
               <a href="#task-title3" class="d-block card-header py-3" data-toggle="collapse"
-                 role="button" aria-expanded="false" aria-controls="collapseCardExample">
+                 role="button" aria-expanded="false" aria-controls="task-title">
                 <h6 class="m-0 font-weight-bold text-primary">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit
                 </h6>
