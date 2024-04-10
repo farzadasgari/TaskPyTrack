@@ -9,15 +9,13 @@
   <meta name="description" content="Free Open Source Task Tracker using Python">
   <meta name="author" content="Farzad Asgari - https://github.com/farzadasgari - https://farzadasgari.ir">
   <title>TaskPyTrack | Track Tasks With Python</title>
-  <!-- Bootstrap CSS -->
-  <link href="{% static 'Plugins/bootstrap/bootstrap.min.css' %}" rel="stylesheet">
   <!-- Font Awesome CSS -->
   <link href="{% static 'Plugins/fontawesome/css/all.css' %}" rel="stylesheet">
   <!-- Custom CSS -->
   <link href="{% static 'Styles/TPT.css' %}" rel="stylesheet">
 </head>
 
-<body>
+<body id="page-top">
 
 <!-- Page Wrapper -->
 <div id="wrapper">
@@ -26,7 +24,9 @@
   <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'index' %}">
       <div class="sidebar-brand-icon">
-        <img src="{% static 'Images/logo.png' %}" alt="TaskPyTrack" id="sidebarLogo">
+        <div src="{% static 'Images/logo.png' %}" class="sidebar-logo"
+        style="width: 2rem; background-image: url({% static 'Images/logo.png' %})">
+        </div>
       </div>
     </a>
   </ul>
@@ -47,24 +47,12 @@
     </div>
     <!-- End of Main Content -->
 
-    <!-- Footer -->
-    <footer class="sticky-footer bg-white">
-      <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-          <span>Copyright &copy; Your Website 2021</span>
-        </div>
-      </div>
-    </footer>
-    <!-- End of Footer -->
-
   </div>
   <!-- End of Content Wrapper -->
 
 </div>
 <!-- End of Page Wrapper -->
 
-<!-- Bootstrap JS -->
-<script src="{% static 'Plugins/bootstrap/bootstrap.min.js' %}"></script>
 <!-- JQuery JS -->
 <script src="{% static 'Plugins/jquery/jquery.js' %}"></script>
 <!-- Custom JS -->
