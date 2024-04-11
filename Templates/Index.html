@@ -171,9 +171,67 @@
                                         </h6>
                                     </a>
                                     <div class="text-right w-25 pr-4 pt-2">
-                                        <a href="#" class="btn btn-outline-primary">
+                                        <a href="#details-task{{ task.pk }}" data-target="#details-task{{ task.pk }}"
+                                           data-toggle="modal" class="btn btn-outline-primary">
                                             <i class="fa fa-eye"></i>
                                         </a>
+                                        <div class="modal fade" id="details-task{{ task.pk }}" tabindex="-1"
+                                             role="dialog" aria-labelledby="details-task{{ task.pk }}"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="details-task{{ task.pk }}">Details
+                                                            Task</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="row" style="text-align: left!important;">
+                                                            <div class="col-12">
+                                                                <h6 class="text-primary">Task:</h6>
+                                                                <p>{{ task.Task }}</p>
+                                                            </div>
+                                                            <div class="col-12"><h6 class="text-primary">
+                                                                Description:</h6>
+                                                                <p>{{ task.Description }}</p>
+                                                                <hr style="border-top:1px solid rgba(100,133,227,0.5)">
+                                                            </div>
+
+                                                            <div class="col-6">
+
+                                                                <h6 class="text-primary">Init Date:</h6>
+                                                                <p>{{ task.Init_Date }}</p>
+                                                            </div>
+                                                            <div class="col-6">
+
+                                                                <h6 class="text-primary">Deadline Date:</h6>
+                                                                <p>{{ task.Deadline_Date }}</p>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <h6 class="text-primary">Priority:</h6>
+                                                                <p>{{ task.get_Priority_display }}</p>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <h6 class="text-primary">Status:</h6>
+                                                                <p><a href="#" class="btn btn-outline-success">
+                                                                    <i class="fa fa-check"></i>
+                                                                </a></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-outline-danger"
+                                                                data-dismiss="modal">Close
+                                                        </button>
+                                                        <a href="{% url 'delete_task' task.pk %}"
+                                                           class="btn btn-outline-primary">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <a href="#" class="btn btn-outline-success">
                                             <i class="fa fa-check"></i>
                                         </a>
