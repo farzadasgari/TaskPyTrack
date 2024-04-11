@@ -3,31 +3,31 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="Free Open Source Task Tracker using Python">
-  <meta name="author" content="Farzad Asgari - https://github.com/farzadasgari - https://farzadasgari.ir">
-  <title>TaskPyTrack | Track Tasks With Python</title>
-  <!-- Google Fonts -->
-  <link
-    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-    rel="stylesheet">
-  <!-- Font Awesome CSS -->
-  <link href="{% static 'Plugins/fontawesome/css/all.css' %}" rel="stylesheet">
-  <!-- Material CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.4.95/css/materialdesignicons.min.css" rel="stylesheet">
-  <!-- Custom CSS -->
-  <link href="{% static 'Styles/TPT.css' %}" rel="stylesheet">
-  <style>
-      .accordion-button::after {
-          background-image: initial;
-      }
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Free Open Source Task Tracker using Python">
+    <meta name="author" content="Farzad Asgari - https://github.com/farzadasgari - https://farzadasgari.ir">
+    <title>TaskPyTrack | Track Tasks With Python</title>
+    <!-- Google Fonts -->
+    <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
+    <!-- Font Awesome CSS -->
+    <link href="{% static 'Plugins/fontawesome/css/all.css' %}" rel="stylesheet">
+    <!-- Material CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.4.95/css/materialdesignicons.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{% static 'Styles/TPT.css' %}" rel="stylesheet">
+    <style>
+        .accordion-button::after {
+            background-image: initial;
+        }
 
-      .accordion-button:not(.collapsed)::after {
-          background-image: initial;
-      }
-  </style>
+        .accordion-button:not(.collapsed)::after {
+            background-image: initial;
+        }
+    </style>
 </head>
 
 <body id="page-top">
@@ -35,184 +35,219 @@
 <!-- Page Wrapper -->
 <div id="wrapper">
 
-  <!-- Sidebar -->
-  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'index' %}">
-      <div class="sidebar-brand-icon">
-        <img src="{% static 'Images/logo.png' %}" class="sidebar-logo"
-             style="width: 50px;">
-      </div>
-    </a>
-
-    <!-- Nav Item -->
-    <li class="nav-item">
-      <a class="nav-link" href="#add-task" data-target="#add-task" data-toggle="modal">
-        <i class="fas fa-fw fa-plus-circle" style="font-size: 30px"></i>
-      </a>
-    </li>
-
-    <!-- Add Task Modal -->
-    <div class="modal fade" id="add-task" tabindex="-1" role="dialog" aria-labelledby="add-task"
-         aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="add-task">Add Task</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form id="add_task" action="{% url 'index' %}" method="post">
-                {% csrf_token %}
-              <div class="form-group">
-                <label for="Task" class="col-form-label">Title:</label>
-                <input type="text" class="form-control" id="Task" name="Task">
-              </div>
-              <div class="form-group">
-                <label for=Description" class="col-form-label">Description:</label>
-                <textarea class="form-control" id="Description" name="Description"></textarea>
-              </div>
-                <div class="form-group">
-                <label for=Priority" class="col-form-label">Priority:</label>
-                <select id="Priority" name="Priority" class="form-control" >
-                    <option value="1" >Emergency</option>
-                    <option value="2" >High</option>
-                    <option value="3" >Medium</option>
-                    <option value="4" >Low</option>
-                </select>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
-            <button type="button" onclick="javascript:document.getElementById('add_task').submit()" class="btn btn-outline-primary">Add</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </ul>
-  <!-- End of Sidebar -->
-
-  <!-- Content Wrapper -->
-  <div id="content-wrapper" class="d-flex flex-column">
-
-    <!-- Main Content -->
-    <div id="content">
-
-      <!-- Topbar -->
-      <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-        <div class="d-sm-flex align-items-center justify-content-between">
-          <h2 class="h4 mb-0 text-gray-800">TaskPyTrack
-            <small>
-              <h6 class="h6 mb-0 text-gray-800">Track Tasks With Python</h6>
-            </small>
-          </h2>
-        </div>
-
-        <!-- Search Box -->
-        <form
-          class="navbar-search d-none form-inline d-sm-inline-block mr-auto ml-5 my-md-0 mw-100 ">
-          <div class="input-group">
-            <input type="text" class="form-control bg-light border-0 small" placeholder="Search Task"
-                   aria-label="Search" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-              <button class="btn btn-primary" type="button">
-                <i class="fas fa-search fa-sm"></i>
-              </button>
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'index' %}">
+            <div class="sidebar-brand-icon">
+                <img src="{% static 'Images/logo.png' %}" class="sidebar-logo"
+                     style="width: 50px;">
             </div>
-          </div>
-        </form>
-        <!-- End of Search Box -->
-
-
-        <!-- GitHub -->
-        <a href="https://github.com/farzadasgari/TaskPyTrack" target="_blank" class="github-link">
-          <svg width="70" height="70" viewBox="0 0 250 250" aria-hidden="true">
-            <defs>
-              <linearGradient id="grad1" x1="0%" y1="75%" x2="100%" y2="0%">
-                <stop offset="0%" style="stop-color:#8fb6eb;stop-opacity:1"></stop>
-                <stop offset="100%" style="stop-color:#6b9ee8;stop-opacity:1"></stop>
-              </linearGradient>
-            </defs>
-            <path d="M 0,0 L115,115 L115,115 L142,142 L250,250 L250,0 Z" fill="url(#grad1)"></path>
-          </svg>
-          <i class="mdi mdi-github-circle"></i>
         </a>
-        <!-- End of GitHub -->
 
-      </nav>
-      <!-- End of Topbar -->
+        <!-- Nav Item -->
+        <li class="nav-item">
+            <a class="nav-link" href="#add-task" data-target="#add-task" data-toggle="modal">
+                <i class="fas fa-fw fa-plus-circle" style="font-size: 30px"></i>
+            </a>
+        </li>
 
-      <!-- Begin Page Content -->
-      <div class="container-fluid">
-
-        <!-- Page Heading -->
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-0 text-gray-800">Tasks to Track</h1>
-        </div>
-
-        <!-- Content Row -->
-        <div class="row">
-            {% for task in tasks %}
-            	<div class="col-xl-12 col-md-12">
-            <div class="card shadow mb-1">
-              <!-- Card Header - Accordion -->
-              <div class="row mr-1 ml-1" style="background-color:#f8f9fc">
-                <a href="#task-title{{ task.pk }}" class="d-block card-header py-3 w-75" data-toggle="collapse"
-                   role="button" aria-expanded="false" aria-controls="task-title">
-                  <h6 class="m-0 font-weight-bold text-primary">
-                    {{ task.Task }}
-                  </h6>
-                </a>
-                <div class="text-right w-25 pr-4 pt-2">
-                  <a href="#" class="btn btn-outline-primary">
-                    <i class="fa fa-eye"></i>
-                  </a>
-                  <a href="#" class="btn btn-outline-success">
-                    <i class="fa fa-check"></i>
-                  </a>
-                  <a href="#" class="btn btn-outline-warning">
-                    <i class="fa fa-pen"></i>
-                  </a>
-                  <a href="#" class="btn btn-outline-danger">
-                    <i class="fa fa-trash"></i>
-                  </a>
+        <!-- Add Task Modal -->
+        <div class="modal fade" id="add-task" tabindex="-1" role="dialog" aria-labelledby="add-task"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="add-task">Add Task</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="add_task" action="{% url 'index' %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="Task" class="col-form-label">Title:</label>
+                                <input type="text" class="form-control" id="Task" name="Task">
+                            </div>
+                            <div class="form-group">
+                                <label for=Description" class="col-form-label">Description:</label>
+                                <textarea class="form-control" id="Description" name="Description"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for=Priority" class="col-form-label">Priority:</label>
+                                <select id="Priority" name="Priority" class="form-control">
+                                    <option value="1">Emergency</option>
+                                    <option value="2">High</option>
+                                    <option value="3">Medium</option>
+                                    <option value="4">Low</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                        <button type="button" onclick="javascript:document.getElementById('add_task').submit()"
+                                class="btn btn-outline-primary">Add
+                        </button>
+                    </div>
                 </div>
-              </div>
-              <!-- Card Content - Collapse -->
-              <div class="collapse" id="task-title{{ task.pk }}">
-                <div class="card-body">{{ task.Description }}
-                </div>
-              </div>
             </div>
-          </div>
-            {% endfor %}
-            
-          
-          
         </div>
 
-      </div>
-      <!-- /.container-fluid -->
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                <div class="d-sm-flex align-items-center justify-content-between">
+                    <h2 class="h4 mb-0 text-gray-800">TaskPyTrack
+                        <small>
+                            <h6 class="h6 mb-0 text-gray-800">Track Tasks With Python</h6>
+                        </small>
+                    </h2>
+                </div>
+
+                <!-- Search Box -->
+                <form
+                        class="navbar-search d-none form-inline d-sm-inline-block mr-auto ml-5 my-md-0 mw-100 ">
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search Task"
+                               aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <!-- End of Search Box -->
+
+
+                <!-- GitHub -->
+                <a href="https://github.com/farzadasgari/TaskPyTrack" target="_blank" class="github-link">
+                    <svg width="70" height="70" viewBox="0 0 250 250" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="75%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#8fb6eb;stop-opacity:1"></stop>
+                                <stop offset="100%" style="stop-color:#6b9ee8;stop-opacity:1"></stop>
+                            </linearGradient>
+                        </defs>
+                        <path d="M 0,0 L115,115 L115,115 L142,142 L250,250 L250,0 Z" fill="url(#grad1)"></path>
+                    </svg>
+                    <i class="mdi mdi-github-circle"></i>
+                </a>
+                <!-- End of GitHub -->
+
+            </nav>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Tasks to Track</h1>
+                </div>
+
+                <!-- Content Row -->
+                <div class="row">
+                    {% for task in tasks %}
+                        <div class="col-xl-12 col-md-12">
+                            <div class="card shadow mb-1">
+                                <!-- Card Header - Accordion -->
+                                <div class="row mr-1 ml-1" style="background-color:#f8f9fc">
+                                    <a href="#task-title{{ task.pk }}" class="d-block card-header py-3 w-75"
+                                       data-toggle="collapse"
+                                       role="button" aria-expanded="false" aria-controls="task-title">
+                                        <h6 class="m-0 font-weight-bold text-primary">
+                                            {{ task.Task }}
+                                        </h6>
+                                    </a>
+                                    <div class="text-right w-25 pr-4 pt-2">
+                                        <a href="#" class="btn btn-outline-primary">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                        <a href="#" class="btn btn-outline-success">
+                                            <i class="fa fa-check"></i>
+                                        </a>
+                                        <a href="#" class="btn btn-outline-warning">
+                                            <i class="fa fa-pen"></i>
+                                        </a>
+                                        <a href="#delete-task{{ task.pk }}" data-target="#delete-task{{ task.pk }}"
+                                           data-toggle="modal" class="btn btn-outline-danger">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                        <div class="modal fade" id="delete-task{{ task.pk }}" tabindex="-1"
+                                             role="dialog" aria-labelledby="delete-task{{ task.pk }}"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog modal-sm" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="delete-task{{ task.pk }}">Delete
+                                                            Task</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div style="text-align: left!important;">
+                                                            <h6 class="text-primary">Task:</h6>
+                                                            <p>{{ task.Task }}</p>
+                                                            <h6 class="text-primary">Priority:</h6>
+                                                            <p>{{ task.get_Priority_display }}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-outline-danger"
+                                                                data-dismiss="modal">Close
+                                                        </button>
+                                                        <a href="{% url 'delete_task' task.pk %}"
+                                                           class="btn btn-outline-primary">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Card Content - Collapse -->
+                                <div class="collapse" id="task-title{{ task.pk }}">
+                                    <div class="card-body">{{ task.Description }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+
+                </div>
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; 2024 <a
+                            href="https://github.com/farzadasgari/TaskPyTrack">TaskPyTrack</a></span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
 
     </div>
-    <!-- End of Main Content -->
-
-    <!-- Footer -->
-    <footer class="sticky-footer bg-white">
-      <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-          <span>Copyright &copy; 2024 <a href="https://github.com/farzadasgari/TaskPyTrack">TaskPyTrack</a></span>
-        </div>
-      </div>
-    </footer>
-    <!-- End of Footer -->
-
-  </div>
-  <!-- End of Content Wrapper -->
+    <!-- End of Content Wrapper -->
 
 </div>
 <!-- End of Page Wrapper -->

@@ -16,3 +16,9 @@ def index(request):
         NewTask.save()
         return redirect('index')
     return render(request, 'Index.html', {'tasks': tasks})
+
+
+def delete_task(request, pk):
+    task = TaskModel.objects.get(pk=pk)
+    task.delete()
+    return redirect('index')
