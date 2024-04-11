@@ -115,13 +115,15 @@
                 </div>
 
                 <!-- Search Box -->
-                <form
-                        class="navbar-search d-none form-inline d-sm-inline-block mr-auto ml-5 my-md-0 mw-100 ">
+                <form method="post" action="{% url 'search_task' %}"
+                      class="navbar-search d-none form-inline d-sm-inline-block mr-auto ml-5 my-md-0 mw-100 ">
+                    {% csrf_token %}
                     <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search Task"
+                        <input value="{{ search }}" name="search" type="text"
+                               class="form-control bg-light border-0 small" placeholder="Search Task"
                                aria-label="Search" aria-describedby="basic-addon2">
                         <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">
+                            <button class="btn btn-primary" type="submit">
                                 <i class="fas fa-search fa-sm"></i>
                             </button>
                         </div>

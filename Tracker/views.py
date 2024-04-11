@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 
+from django.db.models import Q
 from django.shortcuts import render, redirect
 from .models import Task as TaskModel
 
@@ -22,3 +23,10 @@ def delete_task(request, pk):
     task = TaskModel.objects.get(pk=pk)
     task.delete()
     return redirect('index')
+
+
+def search_task(request):
+    if request.method == "POST":
+        search = request.POST.get('search')
+        tasks = TaskModel.objects.filter(Q(Task__icontains=search) | Q(Description__icontains=search))
+        return render(request, 'Index.html', {'tasks': tasks, 'search': search})
