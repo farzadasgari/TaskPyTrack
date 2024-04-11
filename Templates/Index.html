@@ -156,14 +156,15 @@
 
         <!-- Content Row -->
         <div class="row">
-          <div class="col-xl-12 col-md-12">
+            {% for task in tasks %}
+            	<div class="col-xl-12 col-md-12">
             <div class="card shadow mb-1">
               <!-- Card Header - Accordion -->
               <div class="row mr-1 ml-1" style="background-color:#f8f9fc">
-                <a href="#task-title1" class="d-block card-header py-3 w-75" data-toggle="collapse"
+                <a href="#task-title{{ task.pk }}" class="d-block card-header py-3 w-75" data-toggle="collapse"
                    role="button" aria-expanded="false" aria-controls="task-title">
                   <h6 class="m-0 font-weight-bold text-primary">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                    {{ task.Task }}
                   </h6>
                 </a>
                 <div class="text-right w-25 pr-4 pt-2">
@@ -182,94 +183,16 @@
                 </div>
               </div>
               <!-- Card Content - Collapse -->
-              <div class="collapse" id="task-title1">
-                <div class="card-body">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua. Egestas purus viverra accumsan in nisl nisi. Arcu cursus vitae congue mauris
-                  rhoncus aenean vel elit scelerisque. In egestas erat imperdiet sed euismod nisi porta lorem mollis.
-                  Morbi tristique senectus et netus. Mattis pellentesque id nibh tortor id aliquet lectus proin. Sapien
-                  faucibus et molestie ac feugiat sed lectus vestibulum. Ullamcorper velit sed ullamcorper morbi
-                  tincidunt ornare massa eget. Dictum varius duis at consectetur lorem.
+              <div class="collapse" id="task-title{{ task.pk }}">
+                <div class="card-body">{{ task.Description }}
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-xl-12 col-md-12">
-            <div class="card shadow mb-1">
-              <!-- Card Header - Accordion -->
-              <div class="row mr-1 ml-1" style="background-color:#f8f9fc">
-                <a href="#task-title2" class="d-block card-header py-3 w-75" data-toggle="collapse"
-                   role="button" aria-expanded="false" aria-controls="task-title">
-                  <h6 class="m-0 font-weight-bold text-primary">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                  </h6>
-                </a>
-                <div class="text-right w-25 pr-4 pt-2">
-                  <a href="#" class="btn btn-outline-primary">
-                    <i class="fa fa-eye"></i>
-                  </a>
-                  <a href="#" class="btn btn-outline-success">
-                    <i class="fa fa-check"></i>
-                  </a>
-                  <a href="#" class="btn btn-outline-warning">
-                    <i class="fa fa-pen"></i>
-                  </a>
-                  <a href="#" class="btn btn-outline-danger">
-                    <i class="fa fa-trash"></i>
-                  </a>
-                </div>
-              </div>
-              <!-- Card Content - Collapse -->
-              <div class="collapse" id="task-title2">
-                <div class="card-body">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua. Egestas purus viverra accumsan in nisl nisi. Arcu cursus vitae congue mauris
-                  rhoncus aenean vel elit scelerisque. In egestas erat imperdiet sed euismod nisi porta lorem mollis.
-                  Morbi tristique senectus et netus. Mattis pellentesque id nibh tortor id aliquet lectus proin. Sapien
-                  faucibus et molestie ac feugiat sed lectus vestibulum. Ullamcorper velit sed ullamcorper morbi
-                  tincidunt ornare massa eget. Dictum varius duis at consectetur lorem.
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-12 col-md-12">
-            <div class="card shadow mb-1">
-              <!-- Card Header - Accordion -->
-              <div class="row mr-1 ml-1" style="background-color:#f8f9fc">
-                <a href="#task-title3" class="d-block card-header py-3 w-75" data-toggle="collapse"
-                   role="button" aria-expanded="false" aria-controls="task-title">
-                  <h6 class="m-0 font-weight-bold text-primary">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                  </h6>
-                </a>
-                <div class="text-right w-25 pr-4 pt-2">
-                  <a href="#" class="btn btn-outline-primary">
-                    <i class="fa fa-eye"></i>
-                  </a>
-                  <a href="#" class="btn btn-outline-success">
-                    <i class="fa fa-check"></i>
-                  </a>
-                  <a href="#" class="btn btn-outline-warning">
-                    <i class="fa fa-pen"></i>
-                  </a>
-                  <a href="#" class="btn btn-outline-danger">
-                    <i class="fa fa-trash"></i>
-                  </a>
-                </div>
-              </div>
-              <!-- Card Content - Collapse -->
-              <div class="collapse" id="task-title3">
-                <div class="card-body">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua. Egestas purus viverra accumsan in nisl nisi. Arcu cursus vitae congue mauris
-                  rhoncus aenean vel elit scelerisque. In egestas erat imperdiet sed euismod nisi porta lorem mollis.
-                  Morbi tristique senectus et netus. Mattis pellentesque id nibh tortor id aliquet lectus proin. Sapien
-                  faucibus et molestie ac feugiat sed lectus vestibulum. Ullamcorper velit sed ullamcorper morbi
-                  tincidunt ornare massa eget. Dictum varius duis at consectetur lorem.
-                </div>
-              </div>
-            </div>
-          </div>
+            {% endfor %}
+            
+          
+          
         </div>
 
       </div>
