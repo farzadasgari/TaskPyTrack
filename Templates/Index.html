@@ -178,30 +178,30 @@
 
                 <!-- Content Row -->
                 <div class="row">
-                    {% for task in tasks %}
+                    {% for track in tracks %}
                         <div class="col-xl-12 col-md-12">
                             <div class="card shadow mb-1">
                                 <!-- Card Header - Accordion -->
                                 <div class="row mr-1 ml-1" style="background-color:#f8f9fc">
-                                    <a href="#task-title{{ task.pk }}" class="d-block card-header py-3 w-75"
+                                    <a href="#task-title{{ track.pk }}" class="d-block card-header py-3 w-75"
                                        data-toggle="collapse"
                                        role="button" aria-expanded="false" aria-controls="task-title">
                                         <h6 class="m-0 font-weight-bold text-primary">
-                                            {{ task.Task }}
+                                            {{ track.Checklist.Task }}
                                         </h6>
                                     </a>
                                     <div class="text-right w-25 pr-4 pt-2">
-                                        <a href="#details-task{{ task.pk }}" data-target="#details-task{{ task.pk }}"
+                                        <a href="#details-task{{ track.pk }}" data-target="#details-task{{ track.pk }}"
                                            data-toggle="modal" class="btn btn-outline-primary">
                                             <i class="fa fa-eye"></i>
                                         </a>
-                                        <div class="modal fade" id="details-task{{ task.pk }}" tabindex="-1"
-                                             role="dialog" aria-labelledby="details-task{{ task.pk }}"
+                                        <div class="modal fade" id="details-task{{ track.pk }}" tabindex="-1"
+                                             role="dialog" aria-labelledby="details-task{{ track.pk }}"
                                              aria-hidden="true">
                                             <div class="modal-dialog modal-lg" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="details-task{{ task.pk }}">Details
+                                                        <h5 class="modal-title" id="details-task{{ track.pk }}">Details
                                                             Task</h5>
                                                         <button type="button" class="close" data-dismiss="modal"
                                                                 aria-label="Close">
@@ -212,31 +212,31 @@
                                                         <div class="row" style="text-align: left!important;">
                                                             <div class="col-12">
                                                                 <h6 class="text-primary">Task:</h6>
-                                                                <p>{{ task.Task }}</p>
+                                                                <p>{{ track.Checklist.Task }}</p>
                                                             </div>
                                                             <div class="col-12"><h6 class="text-primary">
                                                                 Description:</h6>
-                                                                <p>{{ task.Description }}</p>
+                                                                <p>{{ track.Checklist.Description }}</p>
                                                                 <hr style="border-top:1px solid rgba(100,133,227,0.5)">
                                                             </div>
 
                                                             <div class="col-6">
 
                                                                 <h6 class="text-primary">Init Date:</h6>
-                                                                <p>{{ task.Init_Date }}</p>
+                                                                <p>{{ track.Checklist.Init_Date }}</p>
                                                             </div>
                                                             <div class="col-6">
 
                                                                 <h6 class="text-primary">Deadline Date:</h6>
-                                                                <p>{{ task.Deadline_Date }}</p>
+                                                                <p>{{ track.Checklist.Deadline_Date }}</p>
                                                             </div>
                                                             <div class="col-6">
                                                                 <h6 class="text-primary">Priority:</h6>
-                                                                <p>{{ task.get_Priority_display }}</p>
+                                                                <p>{{ track.Checklist.get_Priority_display }}</p>
                                                             </div>
                                                             <div class="col-6">
                                                                 <h6 class="text-primary">Status:</h6>
-                                                                <p>{% if task.Is_Complete %}
+                                                                <p>{% if track.Checklist.Is_Complete %}
                                                                     Complete
                                                                 {% else %}
                                                                     Pending
@@ -255,13 +255,13 @@
                                         <a href="#" class="btn btn-outline-success">
                                             <i class="fa fa-check"></i>
                                         </a>
-                                        <a href="#edit-task{{ task.pk }}" data-target="#edit-task{{ task.pk }}"
+                                        <a href="#edit-task{{ track.pk }}" data-target="#edit-task{{ track.pk }}"
                                            data-toggle="modal" class="btn btn-outline-warning">
                                             <i class="fa fa-pen"></i>
                                         </a>
                                         <div style="text-align: left!important;" class="modal fade"
-                                             id="edit-task{{ task.pk }}" tabindex="-1" role="dialog"
-                                             aria-labelledby="edit-task{{ task.pk }}"
+                                             id="edit-task{{ track.pk }}" tabindex="-1" role="dialog"
+                                             aria-labelledby="edit-task{{ track.pk }}"
                                              aria-hidden="true">
                                             <div class="modal-dialog modal-lg" role="document">
                                                 <div class="modal-content">
@@ -273,34 +273,34 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form id="edit_task" action="{% url 'edit_task' task.pk %}" method="post">
+                                                        <form id="edit_task" action="{% url 'edit_task' track.pk %}" method="post">
                                                             {% csrf_token %}
                                                             <div class="form-group">
                                                                 <label for="Edit_Task"
                                                                        class="col-form-label">Title:</label>
-                                                                <input type="text" value="{{ task.Task }}"
+                                                                <input type="text" value="{{ track.Checklist.Task }}"
                                                                        class="form-control" id="Edit_Task"
                                                                        name="Edit_Task">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for=Edit_Description" class="col-form-label">Description:</label>
                                                                 <textarea class="form-control" id="Edit_Description"
-                                                                          name="Edit_Description">{{ task.Description }}</textarea>
+                                                                          name="Edit_Description">{{ track.Checklist.Description }}</textarea>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for=Edit_Priority" class="col-form-label">Priority:</label>
                                                                 <select id="Edit_Priority" name="Edit_Priority"
                                                                         class="form-control">
-                                                                    <option value="1" {% if task.Priority == 1 %}
+                                                                    <option value="1" {% if track.Checklist.Priority == 1 %}
                                                                             selected {% endif %} >Emergency
                                                                     </option>
-                                                                    <option value="2" {% if task.Priority == 2 %}
+                                                                    <option value="2" {% if track.Checklist.Priority == 2 %}
                                                                             selected {% endif %}>High
                                                                     </option>
-                                                                    <option value="3" {% if task.Priority == 3 %}
+                                                                    <option value="3" {% if track.Checklist.Priority == 3 %}
                                                                             selected {% endif %}>Medium
                                                                     </option>
-                                                                    <option value="4" {% if task.Priority == 4 %}
+                                                                    <option value="4" {% if track.Checklist.Priority == 4 %}
                                                                             selected {% endif %}>Low
                                                                     </option>
                                                                 </select>
@@ -310,7 +310,7 @@
                                                                 <div class="form-group">
                                                                     <label for="Edit_Deadline_Date"
                                                                            class="col-form-label">Deadline Date:</label>
-                                                                    <input value="{{ task.Deadline_Date }}" id='Edit_Deadline_Date' class="form-control"
+                                                                    <input value="{{ track.Checklist.Deadline_Date }}" id='Edit_Deadline_Date' class="form-control"
                                                                            name="Edit_Deadline_Date">
                                                                 </div>
 
@@ -335,17 +335,17 @@
                                             </div>
                                         </div>
 
-                                        <a href="#delete-task{{ task.pk }}" data-target="#delete-task{{ task.pk }}"
+                                        <a href="#delete-task{{ track.pk }}" data-target="#delete-task{{ track.pk }}"
                                            data-toggle="modal" class="btn btn-outline-danger">
                                             <i class="fa fa-trash"></i>
                                         </a>
-                                        <div class="modal fade" id="delete-task{{ task.pk }}" tabindex="-1"
-                                             role="dialog" aria-labelledby="delete-task{{ task.pk }}"
+                                        <div class="modal fade" id="delete-task{{ track.pk }}" tabindex="-1"
+                                             role="dialog" aria-labelledby="delete-task{{ track.pk }}"
                                              aria-hidden="true">
                                             <div class="modal-dialog modal-sm" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="delete-task{{ task.pk }}">Delete
+                                                        <h5 class="modal-title" id="delete-task{{ track.pk }}">Delete
                                                             Task</h5>
                                                         <button type="button" class="close" data-dismiss="modal"
                                                                 aria-label="Close">
@@ -355,16 +355,16 @@
                                                     <div class="modal-body">
                                                         <div style="text-align: left!important;">
                                                             <h6 class="text-primary">Task:</h6>
-                                                            <p>{{ task.Task }}</p>
+                                                            <p>{{ track.Checklist.Task }}</p>
                                                             <h6 class="text-primary">Priority:</h6>
-                                                            <p>{{ task.get_Priority_display }}</p>
+                                                            <p>{{ track.Checklist.get_Priority_display }}</p>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-outline-danger"
                                                                 data-dismiss="modal">Close
                                                         </button>
-                                                        <a href="{% url 'delete_task' task.pk %}"
+                                                        <a href="{% url 'delete_task' track.pk %}"
                                                            class="btn btn-outline-primary">Delete</a>
                                                     </div>
                                                 </div>
@@ -373,8 +373,8 @@
                                     </div>
                                 </div>
                                 <!-- Card Content - Collapse -->
-                                <div class="collapse" id="task-title{{ task.pk }}">
-                                    <div class="card-body">{{ task.Description }}
+                                <div class="collapse" id="task-title{{ track.pk }}">
+                                    <div class="card-body">{{ track.Checklist.Description }}
                                     </div>
                                 </div>
                             </div>

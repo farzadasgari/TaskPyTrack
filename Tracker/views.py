@@ -1,12 +1,12 @@
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from django.db.models import Q
 from django.shortcuts import render, redirect
-from .models import Task as TaskModel
+from .models import Task as TaskModel, Track
 
 
 def index(request):
-    tasks = TaskModel.objects.all()
+    tracks = Track.objects.all()
     if request.method == "POST":
         Task = request.POST.get('Task')
         Description = request.POST.get('Description')
@@ -16,21 +16,23 @@ def index(request):
                             Init_Date=str(datetime.now())[:10].replace('-', '/'),
                             Deadline_Date=Deadline_Date)
         NewTask.save()
+        NewTrack = Track(Checklist=NewTask)
+        NewTrack.save()
         return redirect('index')
-    return render(request, 'Index.html', {'tasks': tasks})
+    return render(request, 'Index.html', {'tracks': tracks})
 
 
 def delete_task(request, pk):
-    task = TaskModel.objects.get(pk=pk)
-    task.delete()
+    track = Track.objects.get(pk=pk)
+    track.delete()
     return redirect('index')
 
 
 def search_task(request):
     if request.method == "POST":
         search = request.POST.get('search')
-        tasks = TaskModel.objects.filter(Q(Task__icontains=search) | Q(Description__icontains=search))
-        return render(request, 'Index.html', {'tasks': tasks, 'search': search})
+        tracks = Track.objects.filter(Q(Checklist__Task__icontains=search) | Q(Checklist__Description__icontains=search))
+        return render(request, 'Index.html', {'tracks': tracks, 'search': search})
 
 
 def edit_task(request, pk):
@@ -39,10 +41,11 @@ def edit_task(request, pk):
         Edit_Description = request.POST.get('Edit_Description')
         Edit_Priority = request.POST.get('Edit_Priority')
         Edit_Deadline_Date = request.POST.get('Edit_Deadline_Date')
-        MyTask = TaskModel.objects.get(pk=pk)
-        MyTask.Description = Edit_Description
-        MyTask.Priority = Edit_Priority
-        MyTask.Deadline_Date = Edit_Deadline_Date
-        MyTask.Task = Edit_Task
-        MyTask.save()
+        MyTrack = Track.objects.get(pk=pk)
+        MyTrack.Checklist.Description = Edit_Description
+        MyTrack.Checklist.Priority = Edit_Priority
+        MyTrack.Checklist.Deadline_Date = Edit_Deadline_Date
+        MyTrack.Checklist.Task = Edit_Task
+        MyTrack.Checklist.save()
+        MyTrack.save()
         return redirect('index')
