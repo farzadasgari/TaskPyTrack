@@ -255,10 +255,86 @@
                                         <a href="#" class="btn btn-outline-success">
                                             <i class="fa fa-check"></i>
                                         </a>
-                                        <a href="#" class="btn btn-outline-warning">
+                                        <a href="#edit-task{{ task.pk }}" data-target="#edit-task{{ task.pk }}"
+                                           data-toggle="modal" class="btn btn-outline-warning">
                                             <i class="fa fa-pen"></i>
                                         </a>
-                                    
+                                        <div style="text-align: left!important;" class="modal fade" id="edit-task{{ task.pk }}" tabindex="-1" role="dialog"
+                                             aria-labelledby="edit-task{{ task.pk }}"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="add-task">Edit Task</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form id="add_task" action="#"
+                                                              method="post">
+                                                            {% csrf_token %}
+                                                            <div class="form-group">
+                                                                <label for="Edit_Task"
+                                                                       class="col-form-label">Title:</label>
+                                                                <input type="text" value="{{ task.Task }}"
+                                                                       class="form-control" id="Edit_Task"
+                                                                       name="Edit_Task">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for=Edit_Description" class="col-form-label">Description:</label>
+                                                                <textarea class="form-control" id="Edit_Description"
+                                                                          name="Edit_Description">{{ task.Description }}</textarea>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for=Edit_Priority" class="col-form-label">Priority:</label>
+                                                                <select id="Edit_Priority" name="Edit_Priority"
+                                                                        class="form-control">
+                                                                    <option value="1" {% if task.Priority == 1 %}
+                                                                            selected {% endif %} >Emergency
+                                                                    </option>
+                                                                    <option value="2" {% if task.Priority == 2 %}
+                                                                            selected {% endif %}>High
+                                                                    </option>
+                                                                    <option value="3" {% if task.Priority == 3 %}
+                                                                            selected {% endif %}>Medium
+                                                                    </option>
+                                                                    <option value="4" {% if task.Priority == 4 %}
+                                                                            selected {% endif %}>Low
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="content">
+
+                                                                <div class="form-group">
+                                                                    <label for="Edit_Deadline_Date"
+                                                                           class="col-form-label">Deadline Date:</label>
+                                                                    <input id='Edit_Deadline_Date' class="form-control"
+                                                                           name="Edit_Deadline_Date">
+                                                                </div>
+
+                                                                <script>
+                                                                    jSuites.calendar(document.getElementById('Deadline_Date'), {
+                                                                        format: 'YYYY/MM/DD'
+                                                                    });
+                                                                </script>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-outline-danger"
+                                                                data-dismiss="modal">Close
+                                                        </button>
+                                                        <button type="button"
+                                                                onclick="javascript:document.getElementById('add_task').submit()"
+                                                                class="btn btn-outline-primary">Add
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <a href="#delete-task{{ task.pk }}" data-target="#delete-task{{ task.pk }}"
                                            data-toggle="modal" class="btn btn-outline-danger">
                                             <i class="fa fa-trash"></i>
