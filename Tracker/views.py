@@ -31,3 +31,18 @@ def search_task(request):
         search = request.POST.get('search')
         tasks = TaskModel.objects.filter(Q(Task__icontains=search) | Q(Description__icontains=search))
         return render(request, 'Index.html', {'tasks': tasks, 'search': search})
+
+
+def edit_task(request, pk):
+    if request.method == "POST":
+        Edit_Task = request.POST.get('Edit_Task')
+        Edit_Description = request.POST.get('Edit_Description')
+        Edit_Priority = request.POST.get('Edit_Priority')
+        Edit_Deadline_Date = request.POST.get('Edit_Deadline_Date')
+        MyTask = TaskModel.objects.get(pk=pk)
+        MyTask.Description = Edit_Description
+        MyTask.Priority = Edit_Priority
+        MyTask.Deadline_Date = Edit_Deadline_Date
+        MyTask.Task = Edit_Task
+        MyTask.save()
+        return redirect('index')

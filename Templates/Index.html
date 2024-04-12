@@ -259,7 +259,8 @@
                                            data-toggle="modal" class="btn btn-outline-warning">
                                             <i class="fa fa-pen"></i>
                                         </a>
-                                        <div style="text-align: left!important;" class="modal fade" id="edit-task{{ task.pk }}" tabindex="-1" role="dialog"
+                                        <div style="text-align: left!important;" class="modal fade"
+                                             id="edit-task{{ task.pk }}" tabindex="-1" role="dialog"
                                              aria-labelledby="edit-task{{ task.pk }}"
                                              aria-hidden="true">
                                             <div class="modal-dialog modal-lg" role="document">
@@ -272,8 +273,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form id="add_task" action="#"
-                                                              method="post">
+                                                        <form id="edit_task" action="{% url 'edit_task' task.pk %}" method="post">
                                                             {% csrf_token %}
                                                             <div class="form-group">
                                                                 <label for="Edit_Task"
@@ -310,12 +310,12 @@
                                                                 <div class="form-group">
                                                                     <label for="Edit_Deadline_Date"
                                                                            class="col-form-label">Deadline Date:</label>
-                                                                    <input id='Edit_Deadline_Date' class="form-control"
+                                                                    <input value="{{ task.Deadline_Date }}" id='Edit_Deadline_Date' class="form-control"
                                                                            name="Edit_Deadline_Date">
                                                                 </div>
 
                                                                 <script>
-                                                                    jSuites.calendar(document.getElementById('Deadline_Date'), {
+                                                                    jSuites.calendar(document.getElementById('Edit_Deadline_Date'), {
                                                                         format: 'YYYY/MM/DD'
                                                                     });
                                                                 </script>
@@ -327,7 +327,7 @@
                                                                 data-dismiss="modal">Close
                                                         </button>
                                                         <button type="button"
-                                                                onclick="javascript:document.getElementById('add_task').submit()"
+                                                                onclick="javascript:document.getElementById('edit_task').submit()"
                                                                 class="btn btn-outline-primary">Add
                                                         </button>
                                                     </div>
