@@ -28,6 +28,11 @@
             background-image: initial;
         }
     </style>
+
+    <!-- Calender -->
+    <script src="https://jsuites.net/v4/jsuites.js"></script>
+    <link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css"/>
+
 </head>
 
 <body id="page-top">
@@ -81,6 +86,19 @@
                                     <option value="3">Medium</option>
                                     <option value="4">Low</option>
                                 </select>
+                            </div>
+                            <div class="content">
+
+                                <div class="form-group">
+                                    <label for="Deadline_Date" class="col-form-label">Title:</label>
+                                    <input id='Deadline_Date' class="form-control" name="Deadline_Date">
+                                </div>
+
+                                <script>
+                                    jSuites.calendar(document.getElementById('Deadline_Date'), {
+                                        format: 'YYYY/MM/DD'
+                                    });
+                                </script>
                             </div>
                         </form>
                     </div>
@@ -218,9 +236,11 @@
                                                             </div>
                                                             <div class="col-6">
                                                                 <h6 class="text-primary">Status:</h6>
-                                                                <p><a href="#" class="btn btn-outline-success">
-                                                                    <i class="fa fa-check"></i>
-                                                                </a></p>
+                                                                <p>{% if task.Is_Complete %}
+                                                                    Complete
+                                                                {% else %}
+                                                                    Pending
+                                                                {% endif %} </p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -228,8 +248,6 @@
                                                         <button type="button" class="btn btn-outline-danger"
                                                                 data-dismiss="modal">Close
                                                         </button>
-                                                        <a href="{% url 'delete_task' task.pk %}"
-                                                           class="btn btn-outline-primary">Delete</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -240,6 +258,7 @@
                                         <a href="#" class="btn btn-outline-warning">
                                             <i class="fa fa-pen"></i>
                                         </a>
+                                    
                                         <a href="#delete-task{{ task.pk }}" data-target="#delete-task{{ task.pk }}"
                                            data-toggle="modal" class="btn btn-outline-danger">
                                             <i class="fa fa-trash"></i>

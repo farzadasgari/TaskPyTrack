@@ -11,9 +11,10 @@ def index(request):
         Task = request.POST.get('Task')
         Description = request.POST.get('Description')
         Priority = request.POST.get('Priority')
+        Deadline_Date = request.POST.get('Deadline_Date')
         NewTask = TaskModel(Task=Task, Description=Description, Priority=Priority,
                             Init_Date=str(datetime.now())[:10].replace('-', '/'),
-                            Deadline_Date=str(datetime.now() + timedelta(days=5))[:10].replace('-', '/'))
+                            Deadline_Date=Deadline_Date)
         NewTask.save()
         return redirect('index')
     return render(request, 'Index.html', {'tasks': tasks})
