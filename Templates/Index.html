@@ -231,6 +231,11 @@
                                                                 <p>{{ track.Checklist.Deadline_Date }}</p>
                                                             </div>
                                                             <div class="col-6">
+
+                                                                <h6 class="text-primary">Complete Date:</h6>
+                                                                <p>{{ track.Complete_Date }}</p>
+                                                            </div>
+                                                            <div class="col-6">
                                                                 <h6 class="text-primary">Priority:</h6>
                                                                 <p>{{ track.Checklist.get_Priority_display }}</p>
                                                             </div>
@@ -242,11 +247,6 @@
                                                                     Pending
                                                                 {% endif %} </p>
                                                             </div>
-                                                            <div class="col-6"><h6 class="text-primary">
-
-                                                                Note:</h6>
-                                                                <p>{{ track.Note }}</p>
-                                                            </div>
                                                             <div class="col-6">
                                                                 <h6 class="text-primary">File:</h6>
                                                                 {% if track.File %}
@@ -257,6 +257,14 @@
                                                                 {% endif %}
                                                                 </p>
                                                             </div>
+                                                            <div class="col-12">
+                                                                
+                                                                <h6 class="text-primary">
+
+                                                                    Note:</h6>
+                                                                <p>{{ track.Note }}</p>
+                                                            </div>
+
                                                         </div>
 
                                                     </div>

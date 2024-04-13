@@ -6,7 +6,7 @@ from .models import Task as TaskModel, Track
 
 
 def index(request):
-    tracks = Track.objects.all()
+    tracks = Track.objects.order_by('-Checklist__Init_Date')
     if request.method == "POST":
         Task = request.POST.get('Task')
         Description = request.POST.get('Description')
