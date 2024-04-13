@@ -17,9 +17,9 @@ TaskPyTrack)
 - [Installation](#Installation)
 - [Contributing](#Contributing)
 - [Acknowledgments](#Acknowledgments)
-- [License](#license)
+- [License](#License)
 - [Contact](#Contact)
-- [Links](#links)
+- [Links](#Links)
 
 
 ## Features
