@@ -3,31 +3,36 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="Free Open Source Task Tracker using Python">
-  <meta name="author" content="Farzad Asgari - https://github.com/farzadasgari - https://farzadasgari.ir">
-  <title>TaskPyTrack | Track Tasks With Python</title>
-  <!-- Google Fonts -->
-  <link
-    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-    rel="stylesheet">
-  <!-- Font Awesome CSS -->
-  <link href="{% static 'Plugins/fontawesome/css/all.css' %}" rel="stylesheet">
-  <!-- Material CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.4.95/css/materialdesignicons.min.css" rel="stylesheet">
-  <!-- Custom CSS -->
-  <link href="{% static 'Styles/TPT.css' %}" rel="stylesheet">
-  <style>
-      .accordion-button::after {
-          background-image: initial;
-      }
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Free Open Source Task Tracker using Python">
+    <meta name="author" content="Farzad Asgari - https://github.com/farzadasgari - https://farzadasgari.ir">
+    <title>TaskPyTrack | Track Tasks With Python</title>
+    <!-- Google Fonts -->
+    <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
+    <!-- Font Awesome CSS -->
+    <link href="{% static 'Plugins/fontawesome/css/all.css' %}" rel="stylesheet">
+    <!-- Material CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.4.95/css/materialdesignicons.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{% static 'Styles/TPT.css' %}" rel="stylesheet">
+    <style>
+        .accordion-button::after {
+            background-image: initial;
+        }
 
-      .accordion-button:not(.collapsed)::after {
-          background-image: initial;
-      }
-  </style>
+        .accordion-button:not(.collapsed)::after {
+            background-image: initial;
+        }
+    </style>
+
+    <!-- Calender -->
+    <script src="https://jsuites.net/v4/jsuites.js"></script>
+    <link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css"/>
+
 </head>
 
 <body id="page-top">
@@ -35,251 +40,422 @@
 <!-- Page Wrapper -->
 <div id="wrapper">
 
-  <!-- Sidebar -->
-  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'index' %}">
-      <div class="sidebar-brand-icon">
-        <img src="{% static 'Images/logo.png' %}" class="sidebar-logo"
-             style="width: 50px;">
-      </div>
-    </a>
-
-    <!-- Nav Item -->
-    <li class="nav-item">
-      <a class="nav-link" href="#add-task" data-target="#add-task" data-toggle="modal">
-        <i class="fas fa-fw fa-plus-circle" style="font-size: 30px"></i>
-      </a>
-    </li>
-
-    <!-- Add Task Modal -->
-    <div class="modal fade" id="add-task" tabindex="-1" role="dialog" aria-labelledby="add-task"
-         aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="add-task">Add Task</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label">Title:</label>
-                <input type="text" class="form-control" id="title" name=title">
-              </div>
-              <div class="form-group">
-                <label for="message-text" class="col-form-label">Description:</label>
-                <textarea class="form-control" id="description" name=description"></textarea>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-outline-primary">Add</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </ul>
-  <!-- End of Sidebar -->
-
-  <!-- Content Wrapper -->
-  <div id="content-wrapper" class="d-flex flex-column">
-
-    <!-- Main Content -->
-    <div id="content">
-
-      <!-- Topbar -->
-      <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-        <div class="d-sm-flex align-items-center justify-content-between">
-          <h2 class="h4 mb-0 text-gray-800">TaskPyTrack
-            <small>
-              <h6 class="h6 mb-0 text-gray-800">Track Tasks With Python</h6>
-            </small>
-          </h2>
-        </div>
-
-        <!-- Search Box -->
-        <form
-          class="navbar-search d-none form-inline d-sm-inline-block mr-auto ml-5 my-md-0 mw-100 ">
-          <div class="input-group">
-            <input type="text" class="form-control bg-light border-0 small" placeholder="Search Task"
-                   aria-label="Search" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-              <button class="btn btn-primary" type="button">
-                <i class="fas fa-search fa-sm"></i>
-              </button>
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'index' %}">
+            <div class="sidebar-brand-icon">
+                <img src="{% static 'Images/logo.png' %}" class="sidebar-logo"
+                     style="width: 50px;">
             </div>
-          </div>
-        </form>
-        <!-- End of Search Box -->
-
-
-        <!-- GitHub -->
-        <a href="https://github.com/farzadasgari/TaskPyTrack" target="_blank" class="github-link">
-          <svg width="70" height="70" viewBox="0 0 250 250" aria-hidden="true">
-            <defs>
-              <linearGradient id="grad1" x1="0%" y1="75%" x2="100%" y2="0%">
-                <stop offset="0%" style="stop-color:#8fb6eb;stop-opacity:1"></stop>
-                <stop offset="100%" style="stop-color:#6b9ee8;stop-opacity:1"></stop>
-              </linearGradient>
-            </defs>
-            <path d="M 0,0 L115,115 L115,115 L142,142 L250,250 L250,0 Z" fill="url(#grad1)"></path>
-          </svg>
-          <i class="mdi mdi-github-circle"></i>
         </a>
-        <!-- End of GitHub -->
 
-      </nav>
-      <!-- End of Topbar -->
+        <!-- Nav Item -->
+        <li class="nav-item">
+            <a class="nav-link" href="#add-task" data-target="#add-task" data-toggle="modal">
+                <i class="fas fa-fw fa-plus-circle" style="font-size: 30px"></i>
+            </a>
+        </li>
 
-      <!-- Begin Page Content -->
-      <div class="container-fluid">
+        <!-- Add Task Modal -->
+        <div class="modal fade" id="add-task" tabindex="-1" role="dialog" aria-labelledby="add-task"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="add-task">Add Task</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="add_task" action="{% url 'index' %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="Task" class="col-form-label">Title:</label>
+                                <input type="text" class="form-control" id="Task" name="Task">
+                            </div>
+                            <div class="form-group">
+                                <label for=Description" class="col-form-label">Description:</label>
+                                <textarea class="form-control" id="Description" name="Description"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for=Priority" class="col-form-label">Priority:</label>
+                                <select id="Priority" name="Priority" class="form-control">
+                                    <option value="1">Emergency</option>
+                                    <option value="2">High</option>
+                                    <option value="3">Medium</option>
+                                    <option value="4">Low</option>
+                                </select>
+                            </div>
+                            <div class="content">
 
-        <!-- Page Heading -->
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-0 text-gray-800">Tasks to Track</h1>
+                                <div class="form-group">
+                                    <label for="Deadline_Date" class="col-form-label">Title:</label>
+                                    <input id='Deadline_Date' class="form-control" name="Deadline_Date">
+                                </div>
+
+                                <script>
+                                    jSuites.calendar(document.getElementById('Deadline_Date'), {
+                                        format: 'YYYY/MM/DD'
+                                    });
+                                </script>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                        <button type="button" onclick="javascript:document.getElementById('add_task').submit()"
+                                class="btn btn-outline-primary">Add
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Content Row -->
-        <div class="row">
-          <div class="col-xl-12 col-md-12">
-            <div class="card shadow mb-1">
-              <!-- Card Header - Accordion -->
-              <div class="row mr-1 ml-1" style="background-color:#f8f9fc">
-                <a href="#task-title1" class="d-block card-header py-3 w-75" data-toggle="collapse"
-                   role="button" aria-expanded="false" aria-controls="task-title">
-                  <h6 class="m-0 font-weight-bold text-primary">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                  </h6>
-                </a>
-                <div class="text-right w-25 pr-4 pt-2">
-                  <a href="#" class="btn btn-outline-primary">
-                    <i class="fa fa-eye"></i>
-                  </a>
-                  <a href="#" class="btn btn-outline-success">
-                    <i class="fa fa-check"></i>
-                  </a>
-                  <a href="#" class="btn btn-outline-warning">
-                    <i class="fa fa-pen"></i>
-                  </a>
-                  <a href="#" class="btn btn-outline-danger">
-                    <i class="fa fa-trash"></i>
-                  </a>
-                </div>
-              </div>
-              <!-- Card Content - Collapse -->
-              <div class="collapse" id="task-title1">
-                <div class="card-body">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua. Egestas purus viverra accumsan in nisl nisi. Arcu cursus vitae congue mauris
-                  rhoncus aenean vel elit scelerisque. In egestas erat imperdiet sed euismod nisi porta lorem mollis.
-                  Morbi tristique senectus et netus. Mattis pellentesque id nibh tortor id aliquet lectus proin. Sapien
-                  faucibus et molestie ac feugiat sed lectus vestibulum. Ullamcorper velit sed ullamcorper morbi
-                  tincidunt ornare massa eget. Dictum varius duis at consectetur lorem.
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-12 col-md-12">
-            <div class="card shadow mb-1">
-              <!-- Card Header - Accordion -->
-              <div class="row mr-1 ml-1" style="background-color:#f8f9fc">
-                <a href="#task-title2" class="d-block card-header py-3 w-75" data-toggle="collapse"
-                   role="button" aria-expanded="false" aria-controls="task-title">
-                  <h6 class="m-0 font-weight-bold text-primary">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                  </h6>
-                </a>
-                <div class="text-right w-25 pr-4 pt-2">
-                  <a href="#" class="btn btn-outline-primary">
-                    <i class="fa fa-eye"></i>
-                  </a>
-                  <a href="#" class="btn btn-outline-success">
-                    <i class="fa fa-check"></i>
-                  </a>
-                  <a href="#" class="btn btn-outline-warning">
-                    <i class="fa fa-pen"></i>
-                  </a>
-                  <a href="#" class="btn btn-outline-danger">
-                    <i class="fa fa-trash"></i>
-                  </a>
-                </div>
-              </div>
-              <!-- Card Content - Collapse -->
-              <div class="collapse" id="task-title2">
-                <div class="card-body">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua. Egestas purus viverra accumsan in nisl nisi. Arcu cursus vitae congue mauris
-                  rhoncus aenean vel elit scelerisque. In egestas erat imperdiet sed euismod nisi porta lorem mollis.
-                  Morbi tristique senectus et netus. Mattis pellentesque id nibh tortor id aliquet lectus proin. Sapien
-                  faucibus et molestie ac feugiat sed lectus vestibulum. Ullamcorper velit sed ullamcorper morbi
-                  tincidunt ornare massa eget. Dictum varius duis at consectetur lorem.
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-12 col-md-12">
-            <div class="card shadow mb-1">
-              <!-- Card Header - Accordion -->
-              <div class="row mr-1 ml-1" style="background-color:#f8f9fc">
-                <a href="#task-title3" class="d-block card-header py-3 w-75" data-toggle="collapse"
-                   role="button" aria-expanded="false" aria-controls="task-title">
-                  <h6 class="m-0 font-weight-bold text-primary">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                  </h6>
-                </a>
-                <div class="text-right w-25 pr-4 pt-2">
-                  <a href="#" class="btn btn-outline-primary">
-                    <i class="fa fa-eye"></i>
-                  </a>
-                  <a href="#" class="btn btn-outline-success">
-                    <i class="fa fa-check"></i>
-                  </a>
-                  <a href="#" class="btn btn-outline-warning">
-                    <i class="fa fa-pen"></i>
-                  </a>
-                  <a href="#" class="btn btn-outline-danger">
-                    <i class="fa fa-trash"></i>
-                  </a>
-                </div>
-              </div>
-              <!-- Card Content - Collapse -->
-              <div class="collapse" id="task-title3">
-                <div class="card-body">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua. Egestas purus viverra accumsan in nisl nisi. Arcu cursus vitae congue mauris
-                  rhoncus aenean vel elit scelerisque. In egestas erat imperdiet sed euismod nisi porta lorem mollis.
-                  Morbi tristique senectus et netus. Mattis pellentesque id nibh tortor id aliquet lectus proin. Sapien
-                  faucibus et molestie ac feugiat sed lectus vestibulum. Ullamcorper velit sed ullamcorper morbi
-                  tincidunt ornare massa eget. Dictum varius duis at consectetur lorem.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    </ul>
+    <!-- End of Sidebar -->
 
-      </div>
-      <!-- /.container-fluid -->
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                <div class="d-sm-flex align-items-center justify-content-between">
+                    <h2 class="h4 mb-0 text-gray-800">TaskPyTrack
+                        <small>
+                            <h6 class="h6 mb-0 text-gray-800">Track Tasks With Python</h6>
+                        </small>
+                    </h2>
+                </div>
+
+                <!-- Search Box -->
+                <form method="post" action="{% url 'search_task' %}"
+                      class="navbar-search d-none form-inline d-sm-inline-block mr-auto ml-5 my-md-0 mw-100 ">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <input value="{{ search }}" name="search" type="text"
+                               class="form-control bg-light border-0 small" placeholder="Search Task"
+                               aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <!-- End of Search Box -->
+
+
+                <!-- GitHub -->
+                <a href="https://github.com/farzadasgari/TaskPyTrack" target="_blank" class="github-link">
+                    <svg width="70" height="70" viewBox="0 0 250 250" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="75%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#8fb6eb;stop-opacity:1"></stop>
+                                <stop offset="100%" style="stop-color:#6b9ee8;stop-opacity:1"></stop>
+                            </linearGradient>
+                        </defs>
+                        <path d="M 0,0 L115,115 L115,115 L142,142 L250,250 L250,0 Z" fill="url(#grad1)"></path>
+                    </svg>
+                    <i class="mdi mdi-github-circle"></i>
+                </a>
+                <!-- End of GitHub -->
+
+            </nav>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Tasks to Track</h1>
+                </div>
+
+                <!-- Content Row -->
+                <div class="row">
+                    {% for track in tracks %}
+                        <div class="col-xl-12 col-md-12">
+                            <div class="card shadow mb-1">
+                                <!-- Card Header - Accordion -->
+                                <div class="row mr-1 ml-1" style="background-color:#f8f9fc">
+                                    <a href="#task-title{{ track.pk }}" class="d-block card-header py-3 w-75"
+                                       data-toggle="collapse"
+                                       role="button" aria-expanded="false" aria-controls="task-title">
+                                        <h6 class="m-0 font-weight-bold text-primary">
+                                            {{ track.Checklist.Task }}
+                                        </h6>
+                                    </a>
+                                    <div class="text-right w-25 pr-4 pt-2">
+                                        <a href="#details-task{{ track.pk }}" data-target="#details-task{{ track.pk }}"
+                                           data-toggle="modal" class="btn btn-outline-primary">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                        <div class="modal fade" id="details-task{{ track.pk }}" tabindex="-1"
+                                             role="dialog" aria-labelledby="details-task{{ track.pk }}"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="details-task{{ track.pk }}">Details
+                                                            Task</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="row" style="text-align: left!important;">
+                                                            <div class="col-12">
+                                                                <h6 class="text-primary">Task:</h6>
+                                                                <p>{{ track.Checklist.Task }}</p>
+                                                            </div>
+                                                            <div class="col-12"><h6 class="text-primary">
+                                                                Description:</h6>
+                                                                <p>{{ track.Checklist.Description }}</p>
+                                                                <hr style="border-top:1px solid rgba(100,133,227,0.5)">
+                                                            </div>
+
+                                                            <div class="col-6">
+
+                                                                <h6 class="text-primary">Init Date:</h6>
+                                                                <p>{{ track.Checklist.Init_Date }}</p>
+                                                            </div>
+                                                            <div class="col-6">
+
+                                                                <h6 class="text-primary">Deadline Date:</h6>
+                                                                <p>{{ track.Checklist.Deadline_Date }}</p>
+                                                            </div>
+                                                            <div class="col-6">
+
+                                                                <h6 class="text-primary">Complete Date:</h6>
+                                                                <p>{{ track.Complete_Date }}</p>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <h6 class="text-primary">Priority:</h6>
+                                                                <p>{{ track.Checklist.get_Priority_display }}</p>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <h6 class="text-primary">Status:</h6>
+                                                                <p>{% if track.Checklist.Is_Complete %}
+                                                                    Complete
+                                                                {% else %}
+                                                                    Pending
+                                                                {% endif %} </p>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <h6 class="text-primary">File:</h6>
+                                                                {% if track.File %}
+                                                                    <p>
+                                                                    <a href="{{ track.File.url }}">{{ track.File }}</a>
+                                                                {% else %}
+                                                                    Nothing
+                                                                {% endif %}
+                                                                </p>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                
+                                                                <h6 class="text-primary">
+
+                                                                    Note:</h6>
+                                                                <p>{{ track.Note }}</p>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-outline-danger"
+                                                                data-dismiss="modal">Close
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a href="{% url 'complete_task' track.pk %}" class="btn btn-outline-success">
+                                            <i class="fa fa-{% if track.Checklist.Is_Complete %}check{% else %}minus{% endif %} "></i>
+                                        </a>
+                                        <a href="#edit-task{{ track.pk }}" data-target="#edit-task{{ track.pk }}"
+                                           data-toggle="modal" class="btn btn-outline-warning">
+                                            <i class="fa fa-pen"></i>
+                                        </a>
+                                        <div style="text-align: left!important;" class="modal fade"
+                                             id="edit-task{{ track.pk }}" tabindex="-1" role="dialog"
+                                             aria-labelledby="edit-task{{ track.pk }}"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="add-task">Edit Task</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form id="edit_task{{ track.pk }}"
+                                                              action="{% url 'edit_task' track.pk %}" method="post"
+                                                              enctype="multipart/form-data">
+                                                            {% csrf_token %}
+
+                                                            <div class="row">
+                                                                <div class="col-12 form-group">
+                                                                    <label for="Edit_Task"
+                                                                           class="col-form-label  text-primary">Title:</label>
+                                                                    <input type="text"
+                                                                           value="{{ track.Checklist.Task }}"
+                                                                           class="form-control" id="Edit_Task"
+                                                                           name="Edit_Task">
+                                                                </div>
+                                                                <div class="col-12 form-group">
+                                                                    <label for=Edit_Description"
+                                                                           class="col-form-label text-primary">Description:</label>
+                                                                    <textarea class="form-control" id="Edit_Description"
+                                                                              name="Edit_Description">{{ track.Checklist.Description }}</textarea>
+                                                                </div>
+                                                                <div class="col-6 form-group">
+                                                                    <label for=Edit_Priority"
+                                                                           class="col-form-label text-primary">Priority:</label>
+                                                                    <select id="Edit_Priority" name="Edit_Priority"
+                                                                            class="form-control">
+                                                                        <option value="1"
+                                                                                {% if track.Checklist.Priority == 1 %}
+                                                                                selected {% endif %} >Emergency
+                                                                        </option>
+                                                                        <option value="2"
+                                                                                {% if track.Checklist.Priority == 2 %}
+                                                                                selected {% endif %}>High
+                                                                        </option>
+                                                                        <option value="3"
+                                                                                {% if track.Checklist.Priority == 3 %}
+                                                                                selected {% endif %}>Medium
+                                                                        </option>
+                                                                        <option value="4"
+                                                                                {% if track.Checklist.Priority == 4 %}
+                                                                                selected {% endif %}>Low
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+
+
+                                                                <div class="col-6 form-group">
+                                                                    <label for="Edit_Deadline_Date{{ track.pk }}"
+                                                                           class=" text-primary col-form-label">Deadline
+                                                                        Date:</label>
+                                                                    <input value="{{ track.Checklist.Deadline_Date }}"
+                                                                           id='Edit_Deadline_Date{{ track.pk }}'
+                                                                           class="form-control"
+                                                                           name="Edit_Deadline_Date">
+                                                                </div>
+
+                                                                <script>
+                                                                    jSuites.calendar(document.getElementById('Edit_Deadline_Date{{ track.pk }}'), {
+                                                                        format: 'YYYY/MM/DD'
+                                                                    });
+                                                                </script>
+
+                                                                <div class="col-6 form-group">
+                                                                    <label for=Edit_Note"
+                                                                           class="col-form-label text-primary">Note:</label>
+                                                                    <textarea class="form-control" id="Edit_Note"
+                                                                              name="Edit_Note">{{ track.Note }}</textarea>
+                                                                </div>
+                                                                <div class="col-6" style="padding: 12px 13px">
+                                                                    <label for="Edit_File"
+                                                                           class="form-label text-primary">Upload
+                                                                        File:</label>
+                                                                    <input name="Edit_File" style="padding: 4px"
+                                                                           class="form-control"
+                                                                           id="Edit_File" type="file">
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-outline-danger"
+                                                                data-dismiss="modal">Close
+                                                        </button>
+                                                        <button type="button"
+                                                                onclick="javascript:document.getElementById('edit_task{{ track.pk }}').submit()"
+                                                                class="btn btn-outline-primary">Add
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <a href="#delete-task{{ track.pk }}" data-target="#delete-task{{ track.pk }}"
+                                           data-toggle="modal" class="btn btn-outline-danger">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                        <div class="modal fade" id="delete-task{{ track.pk }}" tabindex="-1"
+                                             role="dialog" aria-labelledby="delete-task{{ track.pk }}"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog modal-sm" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="delete-task{{ track.pk }}">Delete
+                                                            Task</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div style="text-align: left!important;">
+                                                            <h6 class="text-primary">Task:</h6>
+                                                            <p>{{ track.Checklist.Task }}</p>
+                                                            <h6 class="text-primary">Priority:</h6>
+                                                            <p>{{ track.Checklist.get_Priority_display }}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-outline-danger"
+                                                                data-dismiss="modal">Cancel
+                                                        </button>
+                                                        <a href="{% url 'delete_task' track.pk %}"
+                                                           class="btn btn-outline-primary">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Card Content - Collapse -->
+                                <div class="collapse" id="task-title{{ track.pk }}">
+                                    <div class="card-body">{{ track.Checklist.Description }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+
+                </div>
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; 2024 <a
+                            href="https://github.com/farzadasgari/TaskPyTrack">TaskPyTrack</a></span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
 
     </div>
-    <!-- End of Main Content -->
-
-    <!-- Footer -->
-    <footer class="sticky-footer bg-white">
-      <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-          <span>Copyright &copy; 2024 <a href="https://github.com/farzadasgari/TaskPyTrack">TaskPyTrack</a></span>
-        </div>
-      </div>
-    </footer>
-    <!-- End of Footer -->
-
-  </div>
-  <!-- End of Content Wrapper -->
+    <!-- End of Content Wrapper -->
 
 </div>
 <!-- End of Page Wrapper -->
