@@ -252,8 +252,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <a href="#" class="btn btn-outline-success">
-                                            <i class="fa fa-check"></i>
+                                        <a href="{% url 'complete_task' track.pk %}" class="btn btn-outline-success">
+                                            <i class="fa fa-{% if track.Checklist.Is_Complete %}check{% else %}minus{% endif %} "></i>
                                         </a>
                                         <a href="#edit-task{{ track.pk }}" data-target="#edit-task{{ track.pk }}"
                                            data-toggle="modal" class="btn btn-outline-warning">
@@ -273,7 +273,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form id="edit_task" action="{% url 'edit_task' track.pk %}" method="post">
+                                                        <form id="edit_task{{ track.pk }}" action="{% url 'edit_task' track.pk %}" method="post">
                                                             {% csrf_token %}
                                                             <div class="form-group">
                                                                 <label for="Edit_Task"
@@ -308,17 +308,22 @@
                                                             <div class="content">
 
                                                                 <div class="form-group">
-                                                                    <label for="Edit_Deadline_Date"
+                                                                    <label for="Edit_Deadline_Date{{ track.pk }}"
                                                                            class="col-form-label">Deadline Date:</label>
-                                                                    <input value="{{ track.Checklist.Deadline_Date }}" id='Edit_Deadline_Date' class="form-control"
+                                                                    <input value="{{ track.Checklist.Deadline_Date }}" id='Edit_Deadline_Date{{ track.pk }}' class="form-control"
                                                                            name="Edit_Deadline_Date">
                                                                 </div>
 
                                                                 <script>
-                                                                    jSuites.calendar(document.getElementById('Edit_Deadline_Date'), {
+                                                                    jSuites.calendar(document.getElementById('Edit_Deadline_Date{{ track.pk }}'), {
                                                                         format: 'YYYY/MM/DD'
                                                                     });
                                                                 </script>
+                                                            </div>
+                                                        <div class="form-group">
+                                                                <label for=Edit_Note" class="col-form-label">Note:</label>
+                                                                <textarea class="form-control" id="Edit_Note"
+                                                                          name="Edit_Note">{{ track.Note }}</textarea>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -327,7 +332,7 @@
                                                                 data-dismiss="modal">Close
                                                         </button>
                                                         <button type="button"
-                                                                onclick="javascript:document.getElementById('edit_task').submit()"
+                                                                onclick="javascript:document.getElementById('edit_task{{ track.pk }}').submit()"
                                                                 class="btn btn-outline-primary">Add
                                                         </button>
                                                     </div>
@@ -362,7 +367,7 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-outline-danger"
-                                                                data-dismiss="modal">Close
+                                                                data-dismiss="modal">Cancel
                                                         </button>
                                                         <a href="{% url 'delete_task' track.pk %}"
                                                            class="btn btn-outline-primary">Delete</a>
