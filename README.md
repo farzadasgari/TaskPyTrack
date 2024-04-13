@@ -86,7 +86,7 @@ TaskPyTrack is licensed under the MIT License. See the [LICENSE](https://github.
 
 For any inquiries, feedback, or support requests, please don't hesitate to reach out to the project maintainer at std_farzad.asgari@alumni.khi.ac.ir or farzad.developer13@gmail.com
 
-## 🔗 Links
+## Links
 [![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://farzadasgari.ir/)
 
 [![Google Scholar Badge](https://img.shields.io/badge/Google%20Scholar-4285F4?logo=googlescholar&logoColor=fff&style=for-the-badge)](https://scholar.google.com/citations?user=Rhue_kkAAAAJ&hl=en)
