@@ -44,12 +44,15 @@ def edit_task(request, pk):
         Edit_Priority = request.POST.get('Edit_Priority')
         Edit_Deadline_Date = request.POST.get('Edit_Deadline_Date')
         Edit_Note = request.POST.get('Edit_Note')
+        Edit_File = request.FILES.get('Edit_File')
         MyTrack.Checklist.Description = Edit_Description
         MyTrack.Checklist.Priority = Edit_Priority
         MyTrack.Checklist.Deadline_Date = Edit_Deadline_Date
         MyTrack.Checklist.Task = Edit_Task
         MyTrack.Checklist.save()
         MyTrack.Note = Edit_Note
+        if Edit_File:
+            MyTrack.File = Edit_File
         MyTrack.save()
         return redirect('index')
 

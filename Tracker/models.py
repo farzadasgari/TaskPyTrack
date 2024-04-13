@@ -38,4 +38,3 @@ class Track(models.Model):
 
     def __str__(self):
         return str(self.Checklist.pk) + '-' + self.Checklist.Task
-

@@ -242,7 +242,23 @@
                                                                     Pending
                                                                 {% endif %} </p>
                                                             </div>
+                                                            <div class="col-6"><h6 class="text-primary">
+
+                                                                Note:</h6>
+                                                                <p>{{ track.Note }}</p>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <h6 class="text-primary">File:</h6>
+                                                                {% if track.File %}
+                                                                    <p>
+                                                                    <a href="{{ track.File.url }}">{{ track.File }}</a>
+                                                                {% else %}
+                                                                    Nothing
+                                                                {% endif %}
+                                                                </p>
+                                                            </div>
                                                         </div>
+
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-outline-danger"
@@ -273,44 +289,58 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form id="edit_task{{ track.pk }}" action="{% url 'edit_task' track.pk %}" method="post">
+                                                        <form id="edit_task{{ track.pk }}"
+                                                              action="{% url 'edit_task' track.pk %}" method="post"
+                                                              enctype="multipart/form-data">
                                                             {% csrf_token %}
-                                                            <div class="form-group">
-                                                                <label for="Edit_Task"
-                                                                       class="col-form-label">Title:</label>
-                                                                <input type="text" value="{{ track.Checklist.Task }}"
-                                                                       class="form-control" id="Edit_Task"
-                                                                       name="Edit_Task">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for=Edit_Description" class="col-form-label">Description:</label>
-                                                                <textarea class="form-control" id="Edit_Description"
-                                                                          name="Edit_Description">{{ track.Checklist.Description }}</textarea>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for=Edit_Priority" class="col-form-label">Priority:</label>
-                                                                <select id="Edit_Priority" name="Edit_Priority"
-                                                                        class="form-control">
-                                                                    <option value="1" {% if track.Checklist.Priority == 1 %}
-                                                                            selected {% endif %} >Emergency
-                                                                    </option>
-                                                                    <option value="2" {% if track.Checklist.Priority == 2 %}
-                                                                            selected {% endif %}>High
-                                                                    </option>
-                                                                    <option value="3" {% if track.Checklist.Priority == 3 %}
-                                                                            selected {% endif %}>Medium
-                                                                    </option>
-                                                                    <option value="4" {% if track.Checklist.Priority == 4 %}
-                                                                            selected {% endif %}>Low
-                                                                    </option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="content">
 
-                                                                <div class="form-group">
+                                                            <div class="row">
+                                                                <div class="col-12 form-group">
+                                                                    <label for="Edit_Task"
+                                                                           class="col-form-label  text-primary">Title:</label>
+                                                                    <input type="text"
+                                                                           value="{{ track.Checklist.Task }}"
+                                                                           class="form-control" id="Edit_Task"
+                                                                           name="Edit_Task">
+                                                                </div>
+                                                                <div class="col-12 form-group">
+                                                                    <label for=Edit_Description"
+                                                                           class="col-form-label text-primary">Description:</label>
+                                                                    <textarea class="form-control" id="Edit_Description"
+                                                                              name="Edit_Description">{{ track.Checklist.Description }}</textarea>
+                                                                </div>
+                                                                <div class="col-6 form-group">
+                                                                    <label for=Edit_Priority"
+                                                                           class="col-form-label text-primary">Priority:</label>
+                                                                    <select id="Edit_Priority" name="Edit_Priority"
+                                                                            class="form-control">
+                                                                        <option value="1"
+                                                                                {% if track.Checklist.Priority == 1 %}
+                                                                                selected {% endif %} >Emergency
+                                                                        </option>
+                                                                        <option value="2"
+                                                                                {% if track.Checklist.Priority == 2 %}
+                                                                                selected {% endif %}>High
+                                                                        </option>
+                                                                        <option value="3"
+                                                                                {% if track.Checklist.Priority == 3 %}
+                                                                                selected {% endif %}>Medium
+                                                                        </option>
+                                                                        <option value="4"
+                                                                                {% if track.Checklist.Priority == 4 %}
+                                                                                selected {% endif %}>Low
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+
+
+                                                                <div class="col-6 form-group">
                                                                     <label for="Edit_Deadline_Date{{ track.pk }}"
-                                                                           class="col-form-label">Deadline Date:</label>
-                                                                    <input value="{{ track.Checklist.Deadline_Date }}" id='Edit_Deadline_Date{{ track.pk }}' class="form-control"
+                                                                           class=" text-primary col-form-label">Deadline
+                                                                        Date:</label>
+                                                                    <input value="{{ track.Checklist.Deadline_Date }}"
+                                                                           id='Edit_Deadline_Date{{ track.pk }}'
+                                                                           class="form-control"
                                                                            name="Edit_Deadline_Date">
                                                                 </div>
 
@@ -319,11 +349,21 @@
                                                                         format: 'YYYY/MM/DD'
                                                                     });
                                                                 </script>
-                                                            </div>
-                                                        <div class="form-group">
-                                                                <label for=Edit_Note" class="col-form-label">Note:</label>
-                                                                <textarea class="form-control" id="Edit_Note"
-                                                                          name="Edit_Note">{{ track.Note }}</textarea>
+
+                                                                <div class="col-6 form-group">
+                                                                    <label for=Edit_Note"
+                                                                           class="col-form-label text-primary">Note:</label>
+                                                                    <textarea class="form-control" id="Edit_Note"
+                                                                              name="Edit_Note">{{ track.Note }}</textarea>
+                                                                </div>
+                                                                <div class="col-6" style="padding: 12px 13px">
+                                                                    <label for="Edit_File"
+                                                                           class="form-label text-primary">Upload
+                                                                        File:</label>
+                                                                    <input name="Edit_File" style="padding: 4px"
+                                                                           class="form-control"
+                                                                           id="Edit_File" type="file">
+                                                                </div>
                                                             </div>
                                                         </form>
                                                     </div>
